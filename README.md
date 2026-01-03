@@ -831,7 +831,7 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 - **Looking Glass Universe** — Quantenmechanik erklärt
 - **Qiskit** — Offizielle Tutorials
 
-## Papers (wenn du Masochist bist)
+## Papers
 
 - [Google Quantum Supremacy Paper (2019)](https://www.nature.com/articles/s41586-019-1666-5)
 - [Shor's Original Paper](https://arxiv.org/abs/quant-ph/9508027)
