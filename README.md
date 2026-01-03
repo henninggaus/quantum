@@ -125,31 +125,46 @@ Klassisches Bit:        Qubit:
 
 In Vektorschreibweise:
 
-$$|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+```
+|0⟩ = [ 1 ]      |1⟩ = [ 0 ]
+      [ 0 ]            [ 1 ]
+```
 
 Ein allgemeiner Qubit-Zustand:
 
-$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
+```
+|ψ⟩ = α|0⟩ + β|1⟩ = [ α ]
+                     [ β ]
 
-wobei $\alpha, \beta \in \mathbb{C}$ (komplexe Zahlen!) und $|\alpha|^2 + |\beta|^2 = 1$.
+wobei α, β ∈ ℂ (komplexe Zahlen!) und |α|² + |β|² = 1
+```
 
 **Warum komplexe Zahlen?** Weil Quantenmechanik. Ernsthaft, die Natur scheint komplexe Zahlen zu mögen. Deal with it.
 
 ### Beispiel: Normierung eines Vektors
 
-Angenommen ich hab einen Vektor $v = \begin{pmatrix} 3+4i \\ 1-2i \end{pmatrix}$. Ist der normiert?
+Angenommen ich hab einen Vektor:
 
-**Schritt 1:** Berechne $|v_1|^2$ und $|v_2|^2$
+```
+v = [ 3+4i ]
+    [ 1-2i ]
+```
 
-$$|3+4i|^2 = 3^2 + 4^2 = 9 + 16 = 25$$
+Ist der normiert?
 
-$$|1-2i|^2 = 1^2 + (-2)^2 = 1 + 4 = 5$$
+**Schritt 1:** Berechne |v₁|² und |v₂|²
+
+```
+|3+4i|² = 3² + 4² = 9 + 16 = 25
+|1-2i|² = 1² + (-2)² = 1 + 4 = 5
+```
 
 **Schritt 2:** Summieren
 
-$$||v||^2 = 25 + 5 = 30$$
-
-$$||v|| = \sqrt{30} \neq 1$$
+```
+||v||² = 25 + 5 = 30
+||v|| = √30 ≠ 1
+```
 
 **Ergebnis:** Nope, nicht normiert. Kein gültiger Quantenzustand (noch nicht).
 
@@ -159,34 +174,51 @@ $$||v|| = \sqrt{30} \neq 1$$
 
 Das Skalarprodukt ist wichtig, weil es uns sagt, wie "ähnlich" zwei Zustände sind.
 
-**Definition:** Für zwei Vektoren $u$ und $v$:
+**Definition:** Für zwei Vektoren u und v:
 
-$$\langle u | v \rangle = u^\dagger v = \sum_i u_i^* v_i$$
+```
+⟨u|v⟩ = u†v = Σᵢ uᵢ* vᵢ
+```
 
-Das $\dagger$ (Dolch) bedeutet: Transponieren UND komplex konjugieren.
+Das † (Dolch) bedeutet: Transponieren UND komplex konjugieren.
 
 ### Durchgerechnetes Beispiel
 
-Gegeben: $u = \begin{pmatrix} 1+i \\ 2-i \end{pmatrix}$ und $v = \begin{pmatrix} 3-2i \\ 4+i \end{pmatrix}$
+Gegeben:
 
-**Schritt 1:** Berechne $u^\dagger$ (transponieren + konjugieren)
+```
+u = [ 1+i  ]      v = [ 3-2i ]
+    [ 2-i  ]          [ 4+i  ]
+```
 
-$$u^\dagger = \begin{pmatrix} (1+i)^* & (2-i)^* \end{pmatrix} = \begin{pmatrix} 1-i & 2+i \end{pmatrix}$$
+**Schritt 1:** Berechne u† (transponieren + konjugieren)
+
+```
+u† = [ (1+i)*  (2-i)* ] = [ 1-i  2+i ]
+```
 
 **Schritt 2:** Multiplizieren
 
-$$\langle u | v \rangle = (1-i)(3-2i) + (2+i)(4+i)$$
+```
+⟨u|v⟩ = (1-i)(3-2i) + (2+i)(4+i)
+```
 
 Erstes Produkt:
-$$(1-i)(3-2i) = 3 - 2i - 3i + 2i^2 = 3 - 5i + 2(-1) = 1 - 5i$$
+```
+(1-i)(3-2i) = 3 - 2i - 3i + 2i² = 3 - 5i + 2(-1) = 1 - 5i
+```
 
 Zweites Produkt:
-$$(2+i)(4+i) = 8 + 2i + 4i + i^2 = 8 + 6i - 1 = 7 + 6i$$
+```
+(2+i)(4+i) = 8 + 2i + 4i + i² = 8 + 6i - 1 = 7 + 6i
+```
 
 **Ergebnis:**
-$$\langle u | v \rangle = (1-5i) + (7+6i) = 8 + i$$
+```
+⟨u|v⟩ = (1-5i) + (7+6i) = 8 + i
+```
 
-**Was bedeutet das?** Wenn $\langle u | v \rangle = 0$, sind die Zustände **orthogonal** (komplett unterschiedlich). Je größer der Betrag, desto "ähnlicher" sind sie.
+**Was bedeutet das?** Wenn ⟨u|v⟩ = 0, sind die Zustände **orthogonal** (komplett unterschiedlich). Je größer der Betrag, desto "ähnlicher" sind sie.
 
 ---
 
@@ -194,32 +226,33 @@ $$\langle u | v \rangle = (1-5i) + (7+6i) = 8 + i$$
 
 Quantengatter sind nichts anderes als **Matrizen**. Du willst ein Qubit transformieren? Multiplizier eine Matrix mit dem Zustandsvektor. Fertig.
 
-### Die wichtigsten Gatter
+### Die wichtigsten Einzel-Qubit-Gatter
 
 **Pauli-X Gate** (Quantum NOT):
-$$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
 
 ```
+X = [ 0  1 ]
+    [ 1  0 ]
+
 X|0⟩ = |1⟩
 X|1⟩ = |0⟩
 
 Das ist wie klassisches NOT, aber in schick.
 ```
 
-**Hadamard Gate** (DAS wichtigste Gate):
-$$H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+**Pauli-Y Gate:**
 
 ```
-H|0⟩ = (|0⟩ + |1⟩) / √2  = |+⟩
-H|1⟩ = (|0⟩ - |1⟩) / √2  = |-⟩
-
-Das erzeugt Superposition aus einem definierten Zustand!
+Y = [ 0  -i ]
+    [ i   0 ]
 ```
 
 **Pauli-Z Gate** (Phase Flip):
-$$Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
 
 ```
+Z = [ 1   0 ]
+    [ 0  -1 ]
+
 Z|0⟩ = |0⟩
 Z|1⟩ = -|1⟩
 
@@ -227,13 +260,128 @@ Z|1⟩ = -|1⟩
 aber für Interferenz ist's wichtig.
 ```
 
+**Hadamard Gate** (DAS wichtigste Gate):
+
+```
+H = 1/√2 [ 1   1 ]
+         [ 1  -1 ]
+
+H|0⟩ = (|0⟩ + |1⟩) / √2  = |+⟩
+H|1⟩ = (|0⟩ - |1⟩) / √2  = |-⟩
+
+Das erzeugt Superposition aus einem definierten Zustand!
+```
+
 ### Beispiel: Hadamard auf |0⟩
 
-$$H|0\rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
+```
+H|0⟩ = 1/√2 [ 1   1 ] [ 1 ]
+            [ 1  -1 ] [ 0 ]
 
-$$= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \cdot 1 + 1 \cdot 0 \\ 1 \cdot 1 + (-1) \cdot 0 \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+     = 1/√2 [ 1·1 + 1·0 ]   = 1/√2 [ 1 ]
+            [ 1·1 + (-1)·0 ]       [ 1 ]
+```
 
-Das ist $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ — perfekte Superposition! 50% Chance für 0, 50% für 1.
+Das ist `1/√2 (|0⟩ + |1⟩)` — perfekte Superposition! 50% Chance für 0, 50% für 1.
+
+---
+
+## 📅 14. März — Mehr-Qubit-Gatter
+
+Hier wird's spannend! Gatter die auf mehrere Qubits gleichzeitig wirken.
+
+### CNOT-Gate (Controlled-NOT)
+
+Das CNOT ist ein 2-Qubit-Gatter:
+- **Kontroll-Qubit:** Wenn es |1⟩ ist, wird das Ziel geflippt
+- **Ziel-Qubit:** Wird geflippt (oder nicht)
+
+```
+CNOT = [ 1  0  0  0 ]
+       [ 0  1  0  0 ]
+       [ 0  0  0  1 ]
+       [ 0  0  1  0 ]
+
+Basis: |00⟩, |01⟩, |10⟩, |11⟩
+         ↓     ↓     ↓     ↓
+       |00⟩  |01⟩  |11⟩  |10⟩
+```
+
+**Schaltkreis-Symbol:**
+```
+Control ──●──
+          │
+Target  ──⊕──
+```
+
+**Beispiele:**
+```
+CNOT|00⟩ = |00⟩   (Kontrolle=0, nichts passiert)
+CNOT|01⟩ = |01⟩   (Kontrolle=0, nichts passiert)
+CNOT|10⟩ = |11⟩   (Kontrolle=1, Ziel wird geflippt!)
+CNOT|11⟩ = |10⟩   (Kontrolle=1, Ziel wird geflippt!)
+```
+
+### Toffoli-Gate (CCNOT)
+
+Das ist ein 3-Qubit-Gatter mit ZWEI Kontroll-Qubits:
+
+```
+Toffoli: Flippt Ziel nur wenn BEIDE Kontrollen = |1⟩
+
+Control 1 ──●──
+            │
+Control 2 ──●──
+            │
+Target    ──⊕──
+```
+
+Die Matrix ist 8×8 (2³ = 8 Basiszustände):
+
+```
+Toffoli = [ 1 0 0 0 0 0 0 0 ]   |000⟩ → |000⟩
+          [ 0 1 0 0 0 0 0 0 ]   |001⟩ → |001⟩
+          [ 0 0 1 0 0 0 0 0 ]   |010⟩ → |010⟩
+          [ 0 0 0 1 0 0 0 0 ]   |011⟩ → |011⟩
+          [ 0 0 0 0 1 0 0 0 ]   |100⟩ → |100⟩
+          [ 0 0 0 0 0 1 0 0 ]   |101⟩ → |101⟩
+          [ 0 0 0 0 0 0 0 1 ]   |110⟩ → |111⟩  ← Flip!
+          [ 0 0 0 0 0 0 1 0 ]   |111⟩ → |110⟩  ← Flip!
+```
+
+**Beispiel: Toffoli|110⟩**
+
+```
+Beide Kontroll-Qubits sind |1⟩ → Ziel wird geflippt
+|110⟩ → |111⟩
+```
+
+**Fun Fact:** Das Toffoli-Gate ist **universell für klassische Berechnung**. Du kannst damit jeden klassischen Schaltkreis bauen!
+
+### CZ-Gate (Controlled-Z)
+
+Mein Lieblings-2-Qubit-Gate (weil's symmetrisch ist):
+
+```
+CZ = [ 1  0  0   0 ]
+     [ 0  1  0   0 ]
+     [ 0  0  1   0 ]
+     [ 0  0  0  -1 ]
+
+CZ|00⟩ = |00⟩
+CZ|01⟩ = |01⟩
+CZ|10⟩ = |10⟩
+CZ|11⟩ = -|11⟩   ← Nur hier ändert sich die Phase!
+```
+
+**Schaltkreis:**
+```
+──●──
+  │
+──●──
+
+(Beide Qubits sind gleichberechtigt!)
+```
 
 ---
 
@@ -241,15 +389,19 @@ Das ist $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ — perfekte Superposition! 
 
 Nicht jede Matrix ist ein gültiges Quantengatter. Nur **unitäre** Matrizen sind erlaubt.
 
-**Definition:** Eine Matrix $U$ ist unitär, wenn $U^\dagger U = UU^\dagger = I$
+**Definition:** Eine Matrix U ist unitär, wenn U†U = UU† = I
 
 **Warum?** Weil Quantenmechanik Wahrscheinlichkeiten erhält. Wenn du mit einem normierten Zustand startest, muss der Output auch normiert sein.
 
 ### Check: Ist Hadamard unitär?
 
-$$H^\dagger H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+```
+H†H = 1/√2 [ 1   1 ] · 1/√2 [ 1   1 ]
+           [ 1  -1 ]        [ 1  -1 ]
 
-$$= \frac{1}{2} \begin{pmatrix} 1+1 & 1-1 \\ 1-1 & 1+1 \end{pmatrix} = \frac{1}{2} \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I \quad \checkmark$$
+    = 1/2 [ 1+1    1-1  ]   = 1/2 [ 2  0 ]   = [ 1  0 ]  = I  ✓
+          [ 1-1    1+1  ]         [ 0  2 ]     [ 0  1 ]
+```
 
 Yep, Hadamard ist unitär. Alles gut.
 
@@ -261,23 +413,35 @@ Okay, ein Qubit ist cool. Aber die echte Power kommt von **mehreren Qubits zusam
 
 **Problem:** Wie beschreibe ich zwei Qubits mathematisch?
 
-**Lösung:** Tensorprodukt (auch Kronecker-Produkt genannt), geschrieben als $\otimes$
+**Lösung:** Tensorprodukt (auch Kronecker-Produkt genannt), geschrieben als ⊗
 
 ### Beispiel: Zwei Qubits
 
-Qubit A im Zustand $|0\rangle$, Qubit B im Zustand $|1\rangle$:
+Qubit A im Zustand |0⟩, Qubit B im Zustand |1⟩:
 
-$$|0\rangle \otimes |1\rangle = |01\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+```
+|0⟩ ⊗ |1⟩ = |01⟩
+```
 
 Wie berechnet man das? Jedes Element des ersten Vektors mal den gesamten zweiten Vektor:
 
-$$= \begin{pmatrix} 1 \cdot \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\ 0 \cdot \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$$
+```
+[ 1 ]     [ 0 ]       [ 1·[ 0 ] ]       [ 0 ]
+[ 0 ]  ⊗  [ 1 ]   =   [   [ 1 ] ]   =   [ 1 ]
+                      [ 0·[ 0 ] ]       [ 0 ]
+                      [   [ 1 ] ]       [ 0 ]
+```
 
 **Die vier Basiszustände für 2 Qubits:**
 
-$$|00\rangle = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \quad |01\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \quad |10\rangle = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}, \quad |11\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$$
+```
+|00⟩ = [ 1 ]    |01⟩ = [ 0 ]    |10⟩ = [ 0 ]    |11⟩ = [ 0 ]
+       [ 0 ]           [ 1 ]           [ 0 ]           [ 0 ]
+       [ 0 ]           [ 0 ]           [ 1 ]           [ 0 ]
+       [ 0 ]           [ 0 ]           [ 0 ]           [ 1 ]
+```
 
-**Exponentielle Explosion:** n Qubits brauchen einen Vektor mit $2^n$ Einträgen. Bei 50 Qubits sind das über 1 Billiarde komplexe Zahlen. Deshalb sind Quantencomputer so schwer zu simulieren!
+**Exponentielle Explosion:** n Qubits brauchen einen Vektor mit 2ⁿ Einträgen. Bei 50 Qubits sind das über 1 Billiarde komplexe Zahlen. Deshalb sind Quantencomputer so schwer zu simulieren!
 
 ---
 
@@ -291,17 +455,30 @@ DAS ist der Moment, wo Quantenmechanik wirklich weird wird.
 
 Der berühmteste verschränkte Zustand:
 
-$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+```
+|Φ+⟩ = 1/√2 (|00⟩ + |11⟩)
 
-**Warum ist das verschränkt?** Versuch mal, das als $|a\rangle \otimes |b\rangle$ zu schreiben:
+     = 1/√2 [ 1 ]
+            [ 0 ]
+            [ 0 ]
+            [ 1 ]
+```
 
-$$(\alpha|0\rangle + \beta|1\rangle) \otimes (\gamma|0\rangle + \delta|1\rangle) = \alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle$$
+**Warum ist das verschränkt?** Versuch mal, das als |a⟩ ⊗ |b⟩ zu schreiben:
 
-Für $|\Phi^+\rangle$ bräuchten wir: $\alpha\gamma = \frac{1}{\sqrt{2}}$, $\alpha\delta = 0$, $\beta\gamma = 0$, $\beta\delta = \frac{1}{\sqrt{2}}$
+```
+(α|0⟩ + β|1⟩) ⊗ (γ|0⟩ + δ|1⟩) = αγ|00⟩ + αδ|01⟩ + βγ|10⟩ + βδ|11⟩
+```
 
-Aber wenn $\alpha\delta = 0$, dann ist $\alpha = 0$ ODER $\delta = 0$.
-- Falls $\alpha = 0$: dann ist $\alpha\gamma = 0 \neq \frac{1}{\sqrt{2}}$ ❌
-- Falls $\delta = 0$: dann ist $\beta\delta = 0 \neq \frac{1}{\sqrt{2}}$ ❌
+Für |Φ+⟩ bräuchten wir: 
+- αγ = 1/√2
+- αδ = 0  
+- βγ = 0
+- βδ = 1/√2
+
+Aber wenn αδ = 0, dann ist α = 0 ODER δ = 0.
+- Falls α = 0: dann ist αγ = 0 ≠ 1/√2 ❌
+- Falls δ = 0: dann ist βδ = 0 ≠ 1/√2 ❌
 
 **Unmöglich!** Der Zustand ist echt verschränkt.
 
@@ -326,6 +503,32 @@ Egal wie weit sie voneinander entfernt sind!
 
 **Wichtig:** Man kann damit KEINE Information übertragen! Alice's Messergebnis ist zufällig. Bob weiß nicht, was Alice gemessen hat, bis sie ihm (klassisch) mitteilt.
 
+### Wie erzeugt man einen Bell-Zustand?
+
+```
+Schaltkreis:
+
+|0⟩ ──[H]──●──  →  |Φ+⟩ = 1/√2 (|00⟩ + |11⟩)
+           │
+|0⟩ ───────⊕──
+```
+
+**Schritt für Schritt:**
+
+1. Start: |00⟩
+
+2. Hadamard auf Qubit 1:
+   ```
+   H|0⟩ ⊗ |0⟩ = 1/√2 (|0⟩ + |1⟩) ⊗ |0⟩ = 1/√2 (|00⟩ + |10⟩)
+   ```
+
+3. CNOT (Qubit 1 kontrolliert Qubit 2):
+   ```
+   CNOT · 1/√2 (|00⟩ + |10⟩) = 1/√2 (|00⟩ + |11⟩) = |Φ+⟩
+   ```
+
+Boom. Verschränkung erzeugt! 🎉
+
 ---
 
 ## 📅 25. März — Die Messungspostulate
@@ -334,29 +537,33 @@ Okay, ich hab lange um dieses Thema herumgetanzt. Aber Messung ist fundamental.
 
 ### Was passiert bei einer Messung?
 
-**Vor der Messung:** Qubit ist in Superposition $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+**Vor der Messung:** Qubit ist in Superposition |ψ⟩ = α|0⟩ + β|1⟩
 
-**Nach der Messung:** Qubit ist entweder $|0\rangle$ ODER $|1\rangle$
+**Nach der Messung:** Qubit ist entweder |0⟩ ODER |1⟩
 
 **Wahrscheinlichkeiten:**
-- P(Ergebnis 0) = $|\alpha|^2$
-- P(Ergebnis 1) = $|\beta|^2$
+- P(Ergebnis 0) = |α|²
+- P(Ergebnis 1) = |β|²
 
 ### Beispiel mit echten Zahlen
 
-Zustand: $|\psi\rangle = \frac{1}{\sqrt{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle$
+```
+Zustand: |ψ⟩ = 1/√3 |0⟩ + √(2/3) |1⟩
+```
 
 **Check:** Ist das normiert?
 
-$$\left|\frac{1}{\sqrt{3}}\right|^2 + \left|\sqrt{\frac{2}{3}}\right|^2 = \frac{1}{3} + \frac{2}{3} = 1 \quad \checkmark$$
+```
+|1/√3|² + |√(2/3)|² = 1/3 + 2/3 = 1  ✓
+```
 
 **Messwahrscheinlichkeiten:**
-- P(0) = $\frac{1}{3}$ ≈ 33.3%
-- P(1) = $\frac{2}{3}$ ≈ 66.7%
+- P(0) = 1/3 ≈ 33.3%
+- P(1) = 2/3 ≈ 66.7%
 
 **Nach der Messung:**
-- Wenn wir 0 messen: Zustand kollabiert zu $|0\rangle$
-- Wenn wir 1 messen: Zustand kollabiert zu $|1\rangle$
+- Wenn wir 0 messen: Zustand kollabiert zu |0⟩
+- Wenn wir 1 messen: Zustand kollabiert zu |1⟩
 
 Die Superposition ist **zerstört**. Irreversibel. Das ist der "Kollaps der Wellenfunktion".
 
@@ -370,17 +577,17 @@ Mein erster "richtiger" Quantenalgorithmus! Er ist nicht praktisch nützlich, ab
 
 ### Das Problem
 
-Du hast eine Black-Box-Funktion $f: \{0,1\}^n \to \{0,1\}$
+Du hast eine Black-Box-Funktion f: {0,1}ⁿ → {0,1}
 
 Die Funktion ist **entweder:**
-1. **Konstant:** $f(x) = 0$ für alle x, ODER $f(x) = 1$ für alle x
+1. **Konstant:** f(x) = 0 für alle x, ODER f(x) = 1 für alle x
 2. **Balanciert:** Genau die Hälfte der Inputs gibt 0, die andere Hälfte 1
 
 **Aufgabe:** Finde heraus, welcher Typ!
 
 ### Klassisch vs. Quantum
 
-**Klassisch:** Im schlimmsten Fall musst du $2^{n-1} + 1$ Inputs testen. Bei n=100 sind das... viel zu viele.
+**Klassisch:** Im schlimmsten Fall musst du 2ⁿ⁻¹ + 1 Inputs testen.
 
 **Quantum:** EIN einziger Query! 🤯
 
@@ -398,25 +605,9 @@ Schaltkreis:
        Orakel Uf
 ```
 
-**Schritt für Schritt:**
-
-1. **Start:** $|01\rangle$
-
-2. **Hadamard auf beide:**
-   $$H|0\rangle \otimes H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
-   
-   $$= \frac{1}{2}(|0\rangle + |1\rangle)(|0\rangle - |1\rangle)$$
-
-3. **Orakel anwenden:** Das Orakel flippt das zweite Qubit wenn $f(x)=1$
-   
-   Nach etwas Mathe (die ich hier spare) kommt raus:
-   
-   - Wenn f konstant: erstes Qubit ist $\pm|0\rangle$
-   - Wenn f balanciert: erstes Qubit ist $\pm|1\rangle$
-
-4. **Hadamard auf erstes Qubit und messen:**
-   - Messung = 0 → f ist konstant
-   - Messung = 1 → f ist balanciert
+**Ergebnis:**
+- Messung = 0 → f ist konstant
+- Messung = 1 → f ist balanciert
 
 **Eine Messung.** Das ist der Quantum Speedup.
 
@@ -447,47 +638,58 @@ Grover funktioniert durch **Amplitudenverstärkung**:
 
 ### Durchgerechnetes Beispiel: N=4 (2 Qubits)
 
-Wir suchen $|11\rangle$ in der "Datenbank" $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+Wir suchen |11⟩ in der "Datenbank" {|00⟩, |01⟩, |10⟩, |11⟩}.
 
-**Anzahl Iterationen:** $\lfloor \frac{\pi}{4}\sqrt{4} \rfloor = \lfloor \frac{\pi}{2} \rfloor = 1$
+**Anzahl Iterationen:** ⌊(π/4)√4⌋ = ⌊π/2⌋ = 1
 
 **Schritt 1: Initialisierung + Hadamard**
 
-$$|\psi_0\rangle = H^{\otimes 2}|00\rangle = \frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)$$
+```
+|ψ₀⟩ = H⊗H |00⟩ = 1/2 (|00⟩ + |01⟩ + |10⟩ + |11⟩)
+```
 
-Alle Amplituden sind $\frac{1}{2}$.
+Alle Amplituden sind 1/2.
 
-**Schritt 2: Orakel (markiert $|11\rangle$)**
+**Schritt 2: Orakel (markiert |11⟩)**
 
-Das Orakel flippt die Phase von $|11\rangle$:
+Das Orakel flippt die Phase von |11⟩:
 
-$$U_f = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$$
+```
+Uf = [ 1  0  0   0 ]
+     [ 0  1  0   0 ]
+     [ 0  0  1   0 ]
+     [ 0  0  0  -1 ]
 
-$$U_f|\psi_0\rangle = \frac{1}{2}(|00\rangle + |01\rangle + |10\rangle - |11\rangle)$$
+Uf|ψ₀⟩ = 1/2 (|00⟩ + |01⟩ + |10⟩ - |11⟩)
+```
 
-Jetzt hat $|11\rangle$ die Amplitude $-\frac{1}{2}$.
+Jetzt hat |11⟩ die Amplitude -1/2.
 
 **Schritt 3: Diffusor (Verstärkung)**
 
-Der Diffusor ist $D = 2|\psi_0\rangle\langle\psi_0| - I$
+Der Diffusor ist D = 2|ψ₀⟩⟨ψ₀| - I
 
 Das ist eine Reflexion am Durchschnitt. Effektiv:
 - Berechne den Durchschnitt aller Amplituden
 - Reflektiere jede Amplitude an diesem Durchschnitt
 
-Durchschnitt: $\bar{a} = \frac{1}{4}\left(\frac{1}{2} + \frac{1}{2} + \frac{1}{2} - \frac{1}{2}\right) = \frac{1}{4}$
+```
+Durchschnitt: ā = 1/4 · (1/2 + 1/2 + 1/2 - 1/2) = 1/4
 
-Neue Amplituden:
-- $|00\rangle$: $2 \cdot \frac{1}{4} - \frac{1}{2} = 0$
-- $|01\rangle$: $2 \cdot \frac{1}{4} - \frac{1}{2} = 0$
-- $|10\rangle$: $2 \cdot \frac{1}{4} - \frac{1}{2} = 0$
-- $|11\rangle$: $2 \cdot \frac{1}{4} - (-\frac{1}{2}) = 1$
+Neue Amplituden (Formel: 2ā - alte_amplitude):
+  |00⟩: 2·(1/4) - 1/2  = 0
+  |01⟩: 2·(1/4) - 1/2  = 0
+  |10⟩: 2·(1/4) - 1/2  = 0
+  |11⟩: 2·(1/4) - (-1/2) = 1
+```
 
 **Endzustand:**
 
-$$|\psi_{final}\rangle = |11\rangle$$
+```
+|ψ_final⟩ = |11⟩
+```
 
-**Messung:** 100% Wahrscheinlichkeit für $|11\rangle$! 🎯
+**Messung:** 100% Wahrscheinlichkeit für |11⟩! 🎯
 
 ---
 
@@ -497,10 +699,10 @@ Das ist der Algorithmus, der RSA-Verschlüsselung brechen könnte. Deshalb inves
 
 ### Das Problem: Faktorisierung
 
-Gegeben: Eine große Zahl $N = p \cdot q$ (Produkt zweier Primzahlen)
-Gesucht: Die Faktoren $p$ und $q$
+Gegeben: Eine große Zahl N = p · q (Produkt zweier Primzahlen)
+Gesucht: Die Faktoren p und q
 
-**Beispiel:** $N = 15$ → Faktoren sind 3 und 5
+**Beispiel:** N = 15 → Faktoren sind 3 und 5
 
 Klingt einfach? Bei einer 2048-Bit-Zahl (wie in RSA) wäre klassische Faktorisierung praktisch unmöglich.
 
@@ -510,51 +712,55 @@ Shor hat erkannt: Faktorisierung kann auf **Periodenfindung** reduziert werden. 
 
 **Der Trick:**
 
-1. Wähle zufälliges $a < N$ mit $\gcd(a, N) = 1$
-2. Finde die Periode $r$ von $f(x) = a^x \mod N$
-3. Wenn $r$ gerade und $a^{r/2} \not\equiv -1 \mod N$:
-   - $\gcd(a^{r/2} - 1, N)$ ist ein Faktor!
-   - $\gcd(a^{r/2} + 1, N)$ ist der andere!
+1. Wähle zufälliges a < N mit gcd(a, N) = 1
+2. Finde die Periode r von f(x) = aˣ mod N
+3. Wenn r gerade und a^(r/2) ≢ -1 mod N:
+   - gcd(a^(r/2) - 1, N) ist ein Faktor!
+   - gcd(a^(r/2) + 1, N) ist der andere!
 
 ### Durchgerechnetes Beispiel: N = 15
 
-Wir faktorisieren $N = 15$. Wählen wir $a = 7$.
+Wir faktorisieren N = 15. Wählen wir a = 7.
 
 **Schritt 1: Periodenfindung**
 
-Berechne $7^x \mod 15$ für verschiedene x:
+Berechne 7ˣ mod 15 für verschiedene x:
 
-| x | $7^x$ | $7^x \mod 15$ |
-|---|-------|---------------|
+| x | 7ˣ | 7ˣ mod 15 |
+|---|-----|-----------|
 | 1 | 7 | 7 |
 | 2 | 49 | 4 |
 | 3 | 343 | 13 |
 | 4 | 2401 | 1 |
 | 5 | 16807 | 7 |
 
-Die Sequenz wiederholt sich! Periode $r = 4$.
+Die Sequenz wiederholt sich! Periode r = 4.
 
 **(Hier würde der Quantencomputer die Quanten-Fourier-Transformation nutzen, um r effizient zu finden)**
 
 **Schritt 2: Faktoren berechnen**
 
-$r = 4$ ist gerade ✓
+r = 4 ist gerade ✓
 
-$$a^{r/2} = 7^2 = 49$$
+```
+a^(r/2) = 7² = 49
 
-$$a^{r/2} - 1 = 49 - 1 = 48$$
-$$a^{r/2} + 1 = 49 + 1 = 50$$
+a^(r/2) - 1 = 49 - 1 = 48
+a^(r/2) + 1 = 49 + 1 = 50
 
-$$\gcd(48, 15) = 3 \quad \checkmark$$
-$$\gcd(50, 15) = 5 \quad \checkmark$$
+gcd(48, 15) = 3  ✓
+gcd(50, 15) = 5  ✓
+```
 
-**Ergebnis:** $15 = 3 \times 5$ 🎉
+**Ergebnis:** 15 = 3 × 5 🎉
 
 ### Die Quanten-Fourier-Transformation (QFT)
 
 Das Herzstück von Shor. Die QFT transformiert einen Zustand so, dass periodische Strukturen sichtbar werden.
 
-$$QFT|x\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i xk/N} |k\rangle$$
+```
+QFT|x⟩ = 1/√N · Σₖ e^(2πixk/N) |k⟩
+```
 
 Das ist die Quanten-Version der diskreten Fourier-Transformation — aber exponentiell schneller berechenbar!
 
@@ -647,17 +853,8 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 ---
 
-## 📅 Letzte Aktualisierung: Heute
+## 📅 Letzte Aktualisierung: 2026-01-03
 
-Ich update dieses Dokument regelmäßig, wenn ich was Neues lerne. Feedback willkommen!
-
----
-
-*"The universe is not only queerer than we suppose, but queerer than we CAN suppose."*  
-— J.B.S. Haldane
-
----
-
-**Autor:** Ein verwirrter Informatiker, der zu viel Zeit mit Quantenmechanik verbringt
+Ich update dieses Dokument regelmäßig, wenn ich was Neues lerne.
 
 **Lizenz:** MIT (für den Code) / CC BY-SA (für den Text)
