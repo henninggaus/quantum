@@ -17,9 +17,9 @@ Dieses Repo ist mein Lerntagebuch. Hier dokumentiere ich alles, was ich lerne, i
 
 # Teil I: Die Basics (aka "Was zur Hölle ist Quantenmechanik?")
 
-## 📅 1. März — Das Doppelspalt-Experiment
+## Das Doppelspalt-Experiment
 
-Holy shit. Ich hab heute das Doppelspalt-Experiment verstanden. Naja, *"verstanden"* ist übertrieben. Ich akzeptiere es einfach.
+Holy shit. Ich hab das Doppelspalt-Experiment verstanden. Naja, *"verstanden"* ist übertrieben. Ich akzeptiere es einfach.
 
 > **Die Idee:** Elektronen verhalten sich wie Wellen... bis man hinschaut. Dann sind sie plötzlich Teilchen. WTF?!
 
@@ -55,7 +55,7 @@ Das Elektron *"weiß"* irgendwie, dass wir hinschauen, und benimmt sich anders! 
 
 ---
 
-## 📅 3. März — Schrödingers Katze (armes Tier)
+## Schrödingers Katze (armes Tier)
 
 Endlich verstehe ich, worum's bei der berühmten Katze geht. Und nein, es geht nicht um Tierquälerei.
 
@@ -82,7 +82,7 @@ Erst wenn wir die Box öffnen, "entscheidet" sich das Universum.
 
 ---
 
-## 📅 5. März — Warum Quantencomputer überhaupt interessant sind
+## Warum Quantencomputer überhaupt interessant sind
 
 Okay, bevor ich in die Mathematik eintauche, muss ich mir klarmachen, *warum* das alles wichtig ist.
 
@@ -105,7 +105,7 @@ Manche Probleme sind einfach *zu groß*. Beispiel: Du willst eine Zahl wie `1234
 
 # Teil II: Die Mathematik (aka "Jetzt wird's ernst")
 
-## 📅 8. März — Lineare Algebra Crashkurs
+## Lineare Algebra Crashkurs
 
 Ich dachte, ich kann Mathe. Dann hab ich Quantum Computing angefangen.
 
@@ -170,7 +170,7 @@ Ist der normiert?
 
 ---
 
-## 📅 10. März — Das Skalarprodukt (Inneres Produkt)
+## Das Skalarprodukt (Inneres Produkt)
 
 Das Skalarprodukt ist wichtig, weil es uns sagt, wie "ähnlich" zwei Zustände sind.
 
@@ -222,7 +222,7 @@ Zweites Produkt:
 
 ---
 
-## 📅 12. März — Matrizen und Quantengatter
+## Matrizen und Quantengatter
 
 Quantengatter sind nichts anderes als **Matrizen**. Du willst ein Qubit transformieren? Multiplizier eine Matrix mit dem Zustandsvektor. Fertig.
 
@@ -286,7 +286,7 @@ Das ist `1/√2 (|0⟩ + |1⟩)` — perfekte Superposition! 50% Chance für 0, 
 
 ---
 
-## 📅 14. März — Mehr-Qubit-Gatter
+## Mehr-Qubit-Gatter
 
 Hier wird's spannend! Gatter die auf mehrere Qubits gleichzeitig wirken.
 
@@ -385,7 +385,7 @@ CZ|11⟩ = -|11⟩   ← Nur hier ändert sich die Phase!
 
 ---
 
-## 📅 15. März — Unitäre Matrizen (wichtig!)
+## Unitäre Matrizen (wichtig!)
 
 Nicht jede Matrix ist ein gültiges Quantengatter. Nur **unitäre** Matrizen sind erlaubt.
 
@@ -407,7 +407,7 @@ Yep, Hadamard ist unitär. Alles gut.
 
 ---
 
-## 📅 18. März — Tensorprodukt (Multi-Qubit-Systeme)
+## Tensorprodukt (Multi-Qubit-Systeme)
 
 Okay, ein Qubit ist cool. Aber die echte Power kommt von **mehreren Qubits zusammen**.
 
@@ -445,7 +445,7 @@ Wie berechnet man das? Jedes Element des ersten Vektors mal den gesamten zweiten
 
 ---
 
-## 📅 20. März — Verschränkung (Entanglement)
+## Verschränkung (Entanglement)
 
 DAS ist der Moment, wo Quantenmechanik wirklich weird wird.
 
@@ -531,7 +531,7 @@ Boom. Verschränkung erzeugt! 🎉
 
 ---
 
-## 📅 25. März — Die Messungspostulate
+## Die Messungspostulate
 
 Okay, ich hab lange um dieses Thema herumgetanzt. Aber Messung ist fundamental.
 
@@ -571,7 +571,7 @@ Die Superposition ist **zerstört**. Irreversibel. Das ist der "Kollaps der Well
 
 # Teil III: Die Algorithmen (aka "Jetzt wird's spannend")
 
-## 📅 1. April — Der Deutsch-Jozsa Algorithmus
+## Der Deutsch-Jozsa Algorithmus
 
 Mein erster "richtiger" Quantenalgorithmus! Er ist nicht praktisch nützlich, aber er zeigt perfekt, warum Quantencomputer cool sind.
 
@@ -613,7 +613,7 @@ Schaltkreis:
 
 ---
 
-## 📅 10. April — Grover's Suchalgorithmus
+## Grover's Suchalgorithmus
 
 DAS ist der Algorithmus, der mich am meisten beeindruckt hat. Quadratischer Speedup für Suche!
 
@@ -693,7 +693,7 @@ Neue Amplituden (Formel: 2ā - alte_amplitude):
 
 ---
 
-## 📅 20. April — Shor's Algorithmus (der große Boss)
+## Shor's Algorithmus (der große Boss)
 
 Das ist der Algorithmus, der RSA-Verschlüsselung brechen könnte. Deshalb investieren Regierungen Milliarden in Quantencomputer (und in Post-Quantum-Kryptographie).
 
@@ -766,7 +766,7 @@ Das ist die Quanten-Version der diskreten Fourier-Transformation — aber expone
 
 ---
 
-## 📅 1. Mai — Quanten-Fehlerkorrektur (kurzer Ausflug)
+## Quanten-Fehlerkorrektur
 
 Real Talk: Echte Quantencomputer sind EXTREM fehleranfällig. Qubits dekohärieren, Gatter sind ungenau, Messungen sind fehlerhaft.
 
@@ -787,9 +787,104 @@ Vergleiche Kopien                   → Korrigiere Fehler
 
 **Surface Codes:** Aktuell der vielversprechendste Ansatz. Google und IBM arbeiten intensiv daran.
 
+**Breaking News: AlphaQubit** — Google DeepMind hat mit rekurrenten Transformer-Netzwerken gezeigt, dass ML-basierte Fehlerkorrektur Surface-Code-Fehler um 6% gegenüber Tensor-Netzwerken und 30% gegenüber Correlated Matching reduzieren kann. Das ist ein Game-Changer für NISQ-Hardware!
+
 ---
 
-# Teil IV: Meine aktuellen Projekte
+# Teil IV: Machine Learning meets Quantum (🔥 Das nächste große Ding)
+
+## Warum ML + Quantum?
+
+Ich bin kürzlich auf ein Buch gestoßen, das mich völlig umgehauen hat: **"Machine Learning in Quantum Sciences"** von Anna Dawid et al. (Cambridge University Press, 2025). Das Buch hat 29 Autoren aus über 10 Ländern — das zeigt, wie interdisziplinär dieses Feld ist.
+
+> *"Machine learning knowledge will be just as valuable as knowing about differential equations and linear algebra"*  
+> — Jesse Thaler, MIT
+
+Das hat mich zum Nachdenken gebracht: ML ist nicht nur ein Tool für Quantenphysiker — es wird zur **Grundsprache** der modernen Quantenforschung.
+
+### Die Hauptanwendungsgebiete
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              ML + QUANTUM: DIE 6 HAUPTFELDER                │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  1. Quantum State Tomography                                │
+│     → Neuronale Netze rekonstruieren Quantenzustände        │
+│     → 98% Fidelity mit WENIGER Messungen!                   │
+│                                                             │
+│  2. Variational Quantum Algorithms (VQA)                    │
+│     → ML optimiert Quantenschaltkreise                      │
+│     → Löst das "Barren Plateau" Problem                     │
+│                                                             │
+│  3. Quantum Error Correction                                │
+│     → AlphaQubit: Transformer für Fehlerkorrektur           │
+│     → 30% bessere Performance als klassische Methoden       │
+│                                                             │
+│  4. Neural-Network Quantum States (NQS)                     │
+│     → Neuronale Netze ALS Wellenfunktionen                  │
+│     → Bis zu 10⁶ Parameter trainierbar!                     │
+│                                                             │
+│  5. Phase Classification                                    │
+│     → Deep Learning erkennt Quantenphasenübergänge          │
+│     → Funktioniert ohne vorherige Kenntnis des Systems      │
+│                                                             │
+│  6. Quantum Control                                         │
+│     → Reinforcement Learning für Pulssequenzen              │
+│     → Optimale Steuerung von echten Quantenprozessoren      │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Neural-Network Quantum States (NQS)
+
+Das ist für mich das mind-blowing Konzept: **Was wenn das neuronale Netz selbst die Wellenfunktion IST?**
+
+```
+Klassische Simulation:
+|ψ⟩ = Vektor mit 2ⁿ komplexen Zahlen  →  Exponentieller Speicher!
+
+NQS Ansatz:
+|ψ⟩ ≈ f_θ(x)  →  Neuronales Netz mit θ Parametern
+
+Vorteil: θ kann VIEL kleiner sein als 2ⁿ
+         und trotzdem physikalisch relevante Zustände beschreiben!
+```
+
+Giuseppe Carleo (EPFL, einer der Buchautoren) hat das Feld quasi erfunden. Der neueste Durchbruch: **Foundation Neural-Network Quantum States (FNQS)** — inspiriert von Large Language Models, aber für Quantenzustände. Ein einziges vortrainiertes Modell kann verschiedene Hamiltonians verarbeiten!
+
+### Quantum State Tomography mit CNNs
+
+**Das Problem:** Um einen Quantenzustand vollständig zu rekonstruieren, brauchst du exponentiell viele Messungen.
+
+**ML-Lösung:** Convolutional Neural Networks können aus WENIGER Messungen den Zustand rekonstruieren:
+
+```
+Traditionell:                    Mit ML:
+─────────────                    ────────
+2ⁿ Messungen                     Polynomiell viele Messungen
+     ↓                                ↓
+Statistische                     CNN lernt die Struktur
+Rekonstruktion                        ↓
+     ↓                           Rekonstruiert fehlende Info
+Langsam, ungenau                      ↓
+                                 98% Fidelity!
+```
+
+### Warum das für NISQ wichtig ist
+
+NISQ = Noisy Intermediate-Scale Quantum — das sind die 50-100+ Qubit Prozessoren die wir HEUTE haben (Google Sycamore, IBM Quantum).
+
+**Das Problem:** Diese Geräte sind verrauscht. Klassische Fehlerkorrektur braucht zu viele Qubits.
+
+**Die Hoffnung:** ML kann mit dem Rauschen umgehen:
+- Lernt Noise-Patterns
+- Kompensiert systematische Fehler  
+- Ermöglicht nützliche Berechnungen BEVOR wir fault-tolerante QCs haben
+
+---
+
+# Teil V: Meine aktuellen Projekte
 
 ## 🔬 RCS Benchmark (dieses Repo!)
 
@@ -808,7 +903,7 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 # Ressourcen, die mir geholfen haben
 
-## Bücher (die ich wirklich gelesen habe)
+## Bücher
 
 1. **"Quantum Computation and Quantum Information"** — Nielsen & Chuang
    - DAS Standardwerk. Dick. Mathematisch. Aber gut.
@@ -818,6 +913,14 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 3. **"Programming Quantum Computers"** — Gimeno-Segovia et al.
    - Praktischer Fokus. Gut für den Einstieg.
+
+4. **"Machine Learning in Quantum Sciences"** — Dawid, Arnold, Requena, Gresch et al. (Cambridge, 2025) 🆕
+   - DAS Buch für ML + Quantum. 29 Autoren, 9 Kapitel, 330 Seiten.
+   - Deckt ab: Deep Learning, Kernel Methods, Reinforcement Learning für Quantensysteme
+   - Lead-Autorin Anna Dawid (Leiden University) hat auch mit Yann LeCun publiziert!
+   - Senior-Autoren: Maciej Lewenstein (ICFO, 800+ Papers), Giuseppe Carleo (EPFL, NQS-Pionier)
+   - **Bewertung:** *"A fantastic overview of an emerging research landscape"* — Maria Schuld (Xanadu)
+   - [Cambridge Link](https://www.cambridge.org/core/books/machine-learning-in-quantum-sciences/B8CD17DBEC814E98C522532BECF60BE7)
 
 ## Online-Kurse
 
@@ -833,9 +936,11 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 ## Papers
 
-- [Google Quantum Supremacy Paper (2019)](https://www.nature.com/articles/s41586-019-1666-5)
+- [Google Quantum Supremacy Paper (Nature 2019)](https://www.nature.com/articles/s41586-019-1666-5)
 - [Shor's Original Paper](https://arxiv.org/abs/quant-ph/9508027)
 - [Grover's Original Paper](https://arxiv.org/abs/quant-ph/9605043)
+- [AlphaQubit: ML für Quantum Error Correction (Nature 2024)](https://www.nature.com/articles/s41586-024-08148-8)
+- [Modern applications of ML in quantum sciences (arXiv:2204.04198)](https://arxiv.org/abs/2204.04198) — Preprint zum Buch
 
 ---
 
@@ -849,12 +954,15 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 4. **Quantum Computing Hype:** Werden wir jemals nützliche Quantencomputer haben? Oder bleibt's bei 100-Qubit-Spielzeug?
 
-5. **Was macht Bewusstsein?** (Okay, das ist Philosophie, aber die Quantenleute haben mich angesteckt...)
+5. **ML + Quantum:** Werden neuronale Netze die klassische Simulation von Quantensystemen obsolet machen? Oder ist das nur ein Hype?
+
+6. **Was macht Bewusstsein?** (Okay, das ist Philosophie, aber die Quantenleute haben mich angesteckt...)
 
 ---
 
-## 📅 Letzte Aktualisierung: 2026-01-03
+*"The universe is not only queerer than we suppose, but queerer than we CAN suppose."*  
+— J.B.S. Haldane
 
-Ich update dieses Dokument regelmäßig, wenn ich was Neues lerne.
+---
 
 **Lizenz:** MIT (für den Code) / CC BY-SA (für den Text)
