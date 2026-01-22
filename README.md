@@ -30,6 +30,12 @@
   - [Warum ML + Quantum?](#warum-ml--quantum)
   - [Neural-Network Quantum States](#neural-network-quantum-states-nqs)
   - [Quantum State Tomography mit CNNs](#quantum-state-tomography-mit-cnns)
+- **Teil IV-B: Zusätzliche Algorithmen & Theorie** 🆕
+  - [HHL-Algorithmus](#hhl-algorithmus--lineare-gleichungssysteme)
+  - [Quantum Simulation](#quantum-simulation--feynmans-traum)
+  - [Quantenkomplexitätstheorie](#quantenkomplexitätstheorie--bqp-und-freunde)
+  - [Bell's Theorem und EPR](#bells-theorem-und-die-epr-paradoxie)
+  - [Die Interpretationen der QM](#die-interpretationen-der-quantenmechanik)
 - **Teil V: Hardware & Aktuelle Entwicklungen (2024/2025)**
   - [Google Willow — Der Durchbruch bei der Fehlerkorrektur](#google-willow--der-durchbruch-bei-der-fehlerkorrektur-dezember-2024)
   - [IBM's Roadmap — Condor, Heron und darüber hinaus](#ibms-roadmap--condor-heron-und-darüber-hinaus)
@@ -937,6 +943,328 @@ NISQ = Noisy Intermediate-Scale Quantum — das sind die 50-100+ Qubit Prozessor
 - Lernt Noise-Patterns
 - Kompensiert systematische Fehler  
 - Ermöglicht nützliche Berechnungen BEVOR wir fault-tolerante QCs haben
+
+
+### Anwendungen von Quantum Walks
+
+- Element Distinctness: O(N^(2/3)) statt O(N)
+- Graph Connectivity
+- Spatial Search
+
+---
+
+## HHL-Algorithmus — Lineare Gleichungssysteme
+
+Der **Harrow-Hassidim-Lloyd Algorithmus** (2009) — exponentieller Speedup für lineare Algebra!
+
+### Das Problem
+
+Löse Ax = b, wobei A eine n×n Matrix ist.
+
+**Klassisch:** O(n³) für Gauß-Elimination, O(n²) für iterative Methoden
+
+**Quantum (HHL):** O(log n) — EXPONENTIELL schneller!
+
+### Der Haken
+
+Du bekommst nicht x direkt, sondern den Quantenzustand |x⟩. Um alle Komponenten auszulesen, brauchst du wieder O(n) Messungen...
+
+**Nützlich wenn:** Du nur ⟨x|M|x⟩ für irgendein M brauchst (z.B. Erwartungswerte).
+
+### Die Idee
+
+```
+1. Enkodiere b als Quantenzustand: |b⟩ = Σᵢ bᵢ|i⟩
+
+2. Schreibe A in Eigenbasis: A = Σⱼ λⱼ|uⱼ⟩⟨uⱼ|
+
+3. Dann ist A⁻¹ = Σⱼ (1/λⱼ)|uⱼ⟩⟨uⱼ|
+
+4. Wende A⁻¹ auf |b⟩ an:
+   |x⟩ = A⁻¹|b⟩ = Σⱼ (bⱼ/λⱼ)|uⱼ⟩
+```
+
+### Der Schaltkreis (vereinfacht)
+
+```
+|0⟩⊗ᵗ ──[H⊗ᵗ]──[e^(iAt)]──[QFT†]──[Controlled-Rotation]──[QFT]──[e^(-iAt)]──[M]
+                  │                        │
+|b⟩   ────────────●────────────────────────●───────────────────────────|x⟩
+```
+
+### Anforderungen
+
+- A muss effizient als Hamiltonian simulierbar sein
+- A muss gut konditioniert sein (kleine Konditionszahl κ)
+- b muss effizient präparierbar sein
+
+### Komplexität
+
+```
+HHL: O(log(n) · κ² · 1/ε)
+
+wobei:
+- n = Dimension
+- κ = Konditionszahl von A
+- ε = gewünschte Genauigkeit
+```
+
+### Anwendungen
+
+- Machine Learning (Least Squares)
+- Finite Element Methoden
+- Portfolio Optimierung
+- Elektromagnetische Simulationen
+
+---
+
+## Quantum Simulation — Feynmans Traum
+
+> *"Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd better make it quantum mechanical."*  
+> — Richard Feynman, 1981
+
+### Das Problem
+
+Simuliere ein Quantensystem mit n Teilchen.
+
+**Klassisch:** Zustandsraum hat 2ⁿ Dimensionen → unmöglich für n > 50
+
+**Quantum:** n Qubits reichen!
+
+### Hamiltonian Simulation
+
+Gegeben: Hamiltonian H
+Gesucht: Zeitentwicklung e^(-iHt)
+
+**Trotter-Suzuki Zerlegung:**
+
+Wenn H = H₁ + H₂ + ... + Hₘ, dann:
+
+```
+e^(-iHt) ≈ (e^(-iH₁t/r) e^(-iH₂t/r) ... e^(-iHₘt/r))^r
+
+Fehler: O(t²/r)
+```
+
+### Anwendungen in der Chemie
+
+```
+Molekül-Simulation:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Klassisch simulierbar:    ~20-30 Atome (kleine Moleküle)
+Quantum (NISQ):           ~50-100 Atome (mittlere Moleküle)
+Quantum (Fault-tolerant): Unbegrenzt!
+
+Beispiele:
+• Koffein: 24 Atome, 102 Elektronen
+• Nitrogenase (Stickstoff-Fixierung): ~150 Atome
+• Pharmamoleküle: 50-200+ Atome
+```
+
+### FeMoco — Der heilige Gral
+
+Das aktive Zentrum der Nitrogenase (FeMo-Cofaktor):
+
+```
+      Fe─S─Fe
+     /       \
+   Fe    Mo   Fe
+     \       /
+      Fe─S─Fe
+
+• 7 Fe-Atome, 1 Mo-Atom, 9 S-Atome
+• Verantwortlich für biologische Stickstoff-Fixierung
+• Klassisch nicht exakt simulierbar!
+• ~100 logische Qubits mit Fehlerkorrektur nötig
+```
+
+Wer das simulieren kann, revolutioniert die Düngemittel-Produktion (aktuell ~2% des Welt-Energieverbrauchs!).
+
+---
+
+## Quantenkomplexitätstheorie — BQP und Freunde
+
+Was können Quantencomputer WIRKLICH?
+
+### Die Komplexitätsklassen
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                        ┌───────────┐                        │
+│                        │   PSPACE  │                        │
+│                   ┌────┴───────────┴────┐                   │
+│                   │         QMA         │                   │
+│              ┌────┴────────────────────┴────┐               │
+│              │              BQP              │               │
+│         ┌────┴──────────────────────────────┴────┐          │
+│         │                  NP                     │          │
+│    ┌────┴────────────────────────────────────────┴────┐     │
+│    │                       BPP                         │     │
+│    │    ┌──────────────────────────────────────┐      │     │
+│    │    │                 P                     │      │     │
+│    │    └──────────────────────────────────────┘      │     │
+│    └──────────────────────────────────────────────────┘     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+P:     In Polynomialzeit lösbar (klassisch)
+BPP:   In Polynomialzeit mit Zufallszahlen
+NP:    Lösung verifizierbar in Polynomialzeit
+BQP:   In Polynomialzeit auf Quantencomputer
+QMA:   Quantum-NP (Quantum-Beweis verifizierbar)
+PSPACE: Mit polynomiellem Speicher lösbar
+```
+
+### BQP — Bounded-Error Quantum Polynomial Time
+
+```
+Definition:
+Eine Sprache L ist in BQP, wenn es einen poly-time
+Quantenalgorithmus gibt, der:
+• x ∈ L akzeptiert mit Wahrscheinlichkeit ≥ 2/3
+• x ∉ L verwirft mit Wahrscheinlichkeit ≥ 2/3
+```
+
+### Was wissen wir?
+
+```
+P ⊆ BPP ⊆ BQP ⊆ PSPACE
+
+Vermutungen (unbewiesen!):
+• BQP ⊄ NP (Quantencomputer lösen nicht alle NP-Probleme)
+• NP ⊄ BQP (Es gibt NP-Probleme die quantum-hart sind)
+• BQP ≠ BPP (Quantencomputer sind echt stärker)
+```
+
+### Quantum Supremacy vs. Quantum Advantage
+
+```
+Quantum Supremacy (2019):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ein Quantencomputer löst IRGENDEIN Problem schneller
+als jeder klassische Computer.
+→ Google Sycamore: Random Circuit Sampling
+
+Quantum Advantage (Ziel):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ein Quantencomputer löst ein NÜTZLICHES Problem schneller.
+→ Noch nicht erreicht für praktische Anwendungen!
+```
+
+---
+
+## Bell's Theorem und die EPR-Paradoxie
+
+Die tiefste Frage: Ist Quantenmechanik *lokal* und *realistisch*?
+
+### Das EPR-Paradoxon (1935)
+
+Einstein, Podolsky und Rosen argumentierten:
+
+> Wenn zwei Teilchen verschränkt sind und ich eines messe, "weiß" das andere sofort das Ergebnis. Das verletzt entweder Lokalität (keine Fernwirkung) oder Realismus (Werte existieren vor der Messung).
+
+**Einsteins Schluss:** Quantenmechanik ist unvollständig! Es muss "versteckte Variablen" geben.
+
+### Bell's Ungleichung (1964)
+
+John Bell bewies: KEINE lokale Theorie mit versteckten Variablen kann alle Vorhersagen der Quantenmechanik reproduzieren!
+
+**Die CHSH-Ungleichung:**
+
+```
+|⟨A₁B₁⟩ + ⟨A₁B₂⟩ + ⟨A₂B₁⟩ - ⟨A₂B₂⟩| ≤ 2
+
+wobei A₁, A₂ Alice's Messungen sind
+und B₁, B₂ Bob's Messungen
+```
+
+**Klassisch (lokale versteckte Variablen):** Maximum ist 2
+
+**Quantenmechanik:** Maximum ist 2√2 ≈ 2.83 (Tsirelson-Schranke)
+
+### Experimentelle Tests
+
+```
+Aspekt-Experimente (1982):     Verletzung nachgewiesen!
+Zeilinger-Experimente (1998):  Über große Distanzen
+Loophole-free Tests (2015):    Alle Schlupflöcher geschlossen
+
+→ Nobelpreis 2022 für Aspect, Clauser, Zeilinger!
+```
+
+### Was bedeutet das?
+
+Die Natur ist ENTWEDER:
+1. **Nicht-lokal:** Information "reist" instantan (aber nutzlos für FTL-Kommunikation)
+2. **Nicht-realistisch:** Werte existieren nicht vor der Messung
+3. **Beides nicht**
+
+Die meisten Physiker akzeptieren: Die Welt ist fundamental nicht-lokal ODER nicht-realistisch. Einstein lag falsch (aber sein Unbehagen war berechtigt!).
+
+---
+
+## Die Interpretationen der Quantenmechanik
+
+Warnung: Ab hier wird's philosophisch. Aber wichtig!
+
+### Kopenhagener Interpretation (Standard)
+
+```
+• Die Wellenfunktion beschreibt unser Wissen, nicht die Realität
+• Messung "kollabiert" die Wellenfunktion
+• Was zwischen Messungen passiert ist "nicht definiert"
+• "Shut up and calculate" — Bohr, Heisenberg
+```
+
+**Problem:** Was ist eine "Messung"? Wo ist die Grenze klassisch/quantum?
+
+### Many-Worlds (Everett, 1957)
+
+```
+• Die Wellenfunktion beschreibt die Realität
+• Es gibt KEINEN Kollaps
+• Bei jeder "Messung" verzweigt sich das Universum
+• Alle Ergebnisse passieren — in verschiedenen Branches
+
+|ψ⟩ = α|0⟩ + β|1⟩  →  Messung  →  
+    → Branch 1: Beobachter sieht 0
+    → Branch 2: Beobachter sieht 1
+```
+
+**Problem:** Wie erklärt man Wahrscheinlichkeiten? Warum |α|²?
+
+### Pilot-Wave (de Broglie-Bohm)
+
+```
+• Teilchen haben IMMER definierte Positionen
+• Sie werden von einer "Pilotwelle" geführt
+• Die Wellenfunktion ist real und führt das Teilchen
+• Deterministisch, aber nicht-lokal!
+```
+
+**Problem:** Künstlich? Nicht-Lokal ist auch weird.
+
+### QBism (Quantum Bayesianism)
+
+```
+• Die Wellenfunktion beschreibt die Überzeugungen eines Agenten
+• Quantenwahrscheinlichkeiten sind subjektiv (wie Bayesian priors)
+• Es gibt keine "View from Nowhere"
+• Löst das Messproblem durch Subjektivität
+```
+
+**Problem:** Ist das nicht einfach Instrumentalismus?
+
+### Meine Meinung?
+
+Ich schwanke zwischen Copenhagen und Many-Worlds. Many-Worlds ist mathematisch eleganter, aber ontologisch verschwenderisch. Copenhagen funktioniert, auch wenn's unbefriedigend ist.
+
+```
+"I think I can safely say that nobody understands quantum mechanics."
+— Richard Feynman
+```
 
 ---
 
