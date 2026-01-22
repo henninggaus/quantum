@@ -5,6 +5,48 @@
 
 ---
 
+## 📑 Inhaltsverzeichnis
+
+- [Warum dieses Repo existiert](#warum-dieses-repo-existiert)
+- **Teil I: Die Basics**
+  - [Das Doppelspalt-Experiment](#das-doppelspalt-experiment)
+  - [Schrödingers Katze](#schrödingers-katze-armes-tier)
+  - [Warum Quantencomputer überhaupt interessant sind](#warum-quantencomputer-überhaupt-interessant-sind)
+- **Teil II: Die Mathematik**
+  - [Lineare Algebra Crashkurs](#lineare-algebra-crashkurs)
+  - [Das Skalarprodukt](#das-skalarprodukt-inneres-produkt)
+  - [Matrizen und Quantengatter](#matrizen-und-quantengatter)
+  - [Mehr-Qubit-Gatter](#mehr-qubit-gatter)
+  - [Unitäre Matrizen](#unitäre-matrizen-wichtig)
+  - [Tensorprodukt](#tensorprodukt-multi-qubit-systeme)
+  - [Verschränkung](#verschränkung-entanglement)
+  - [Die Messungspostulate](#die-messungspostulate)
+- **Teil III: Die Algorithmen**
+  - [Der Deutsch-Jozsa Algorithmus](#der-deutsch-jozsa-algorithmus)
+  - [Grover's Suchalgorithmus](#grovers-suchalgorithmus)
+  - [Shor's Algorithmus](#shors-algorithmus-der-große-boss)
+  - [Quanten-Fehlerkorrektur](#quanten-fehlerkorrektur)
+- **Teil IV: Machine Learning meets Quantum**
+  - [Warum ML + Quantum?](#warum-ml--quantum)
+  - [Neural-Network Quantum States](#neural-network-quantum-states-nqs)
+  - [Quantum State Tomography mit CNNs](#quantum-state-tomography-mit-cnns)
+- **Teil V: Hardware & Aktuelle Entwicklungen (2024/2025)**
+  - [Google Willow — Der Durchbruch bei der Fehlerkorrektur](#google-willow--der-durchbruch-bei-der-fehlerkorrektur-dezember-2024)
+  - [IBM's Roadmap — Condor, Heron und darüber hinaus](#ibms-roadmap--condor-heron-und-darüber-hinaus)
+  - [Der Wettlauf der Giganten](#der-wettlauf-der-giganten)
+  - [NISQ vs. Fault-Tolerant — Wo stehen wir wirklich?](#nisq-vs-fault-tolerant--wo-stehen-wir-wirklich)
+- **Teil VI: Post-Quantum Kryptographie**
+  - [Das Problem: Shor bedroht alles](#das-problem-shor-bedroht-alles)
+  - [NIST's neue Standards (August 2024)](#nists-neue-standards-august-2024)
+  - [Die neuen Algorithmen erklärt](#die-neuen-algorithmen-erklärt)
+  - [Was bedeutet das für dich?](#was-bedeutet-das-für-dich)
+- **Teil VII: Meine Projekte & Ressourcen**
+  - [RCS Benchmark](#-rcs-benchmark-dieses-repo)
+  - [Ressourcen die mir geholfen haben](#ressourcen-die-mir-geholfen-haben)
+  - [Offene Fragen](#offene-fragen-die-mich-nachts-wachhalten)
+
+---
+
 ## Warum dieses Repo existiert
 
 Ich versuche seit ein paar Monaten, Quantum Computing zu verstehen. Nicht oberflächlich mit "Qubits sind 0 und 1 gleichzeitig" — sondern *richtig*. Mit der Mathematik dahinter. Mit den Algorithmen. Mit dem ganzen Wahnsinn.
@@ -787,7 +829,21 @@ Vergleiche Kopien                   → Korrigiere Fehler
 
 **Surface Codes:** Aktuell der vielversprechendste Ansatz. Google und IBM arbeiten intensiv daran.
 
-**Breaking News: AlphaQubit** — Google DeepMind hat mit rekurrenten Transformer-Netzwerken gezeigt, dass ML-basierte Fehlerkorrektur Surface-Code-Fehler um 6% gegenüber Tensor-Netzwerken und 30% gegenüber Correlated Matching reduzieren kann. Das ist ein Game-Changer für NISQ-Hardware!
+### Der "Below Threshold" Durchbruch
+
+Ein Meilenstein in der Fehlerkorrektur ist das Erreichen des **Error Correction Threshold**:
+
+```
+OBERHALB der Schwelle:
+━━━━━━━━━━━━━━━━━━━━━━
+Mehr Qubits → Mehr Fehler → System wird SCHLECHTER
+Das war der Stand bis 2024.
+
+UNTERHALB der Schwelle:
+━━━━━━━━━━━━━━━━━━━━━━
+Mehr Qubits → Mehr Korrektur → System wird BESSER!
+Das ist der heilige Gral — und Google hat ihn erreicht.
+```
 
 ---
 
@@ -836,7 +892,7 @@ Das hat mich zum Nachdenken gebracht: ML ist nicht nur ein Tool für Quantenphys
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Neural-Network Quantum States (NQS)
+## Neural-Network Quantum States (NQS)
 
 Das ist für mich das mind-blowing Konzept: **Was wenn das neuronale Netz selbst die Wellenfunktion IST?**
 
@@ -853,7 +909,7 @@ Vorteil: θ kann VIEL kleiner sein als 2ⁿ
 
 Giuseppe Carleo (EPFL, einer der Buchautoren) hat das Feld quasi erfunden. Der neueste Durchbruch: **Foundation Neural-Network Quantum States (FNQS)** — inspiriert von Large Language Models, aber für Quantenzustände. Ein einziges vortrainiertes Modell kann verschiedene Hamiltonians verarbeiten!
 
-### Quantum State Tomography mit CNNs
+## Quantum State Tomography mit CNNs
 
 **Das Problem:** Um einen Quantenzustand vollständig zu rekonstruieren, brauchst du exponentiell viele Messungen.
 
@@ -873,7 +929,7 @@ Langsam, ungenau                      ↓
 
 ### Warum das für NISQ wichtig ist
 
-NISQ = Noisy Intermediate-Scale Quantum — das sind die 50-100+ Qubit Prozessoren die wir HEUTE haben (Google Sycamore, IBM Quantum).
+NISQ = Noisy Intermediate-Scale Quantum — das sind die 50-100+ Qubit Prozessoren die wir HEUTE haben (Google Willow, IBM Heron).
 
 **Das Problem:** Diese Geräte sind verrauscht. Klassische Fehlerkorrektur braucht zu viele Qubits.
 
@@ -884,7 +940,365 @@ NISQ = Noisy Intermediate-Scale Quantum — das sind die 50-100+ Qubit Prozessor
 
 ---
 
-# Teil V: Meine aktuellen Projekte
+# Teil V: Hardware & Aktuelle Entwicklungen (2024/2025)
+
+## Google Willow — Der Durchbruch bei der Fehlerkorrektur (Dezember 2024)
+
+Am 9. Dezember 2024 hat Google seinen **Willow-Chip** vorgestellt, und die Quantum Computing Welt ist ausgeflippt. Zurecht.
+
+### Die zwei großen Achievements
+
+**1. Below-Threshold Error Correction** 🏆
+
+Das ist der heilige Gral seit Peter Shor 1995 die Fehlerkorrektur eingeführt hat:
+
+```
+Willow's Durchbruch:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Surface Code Größe:     3×3  →  5×5  →  7×7
+Fehlerrate:             ████    ██     █
+                        hoch    halb   viertel
+
+Bei jeder Verdopplung der Gittergröße: Fehlerrate HALBIERT sich!
+
+Das ist EXPONENTIELLES Fehlersuppression — genau das,
+was wir für skalierbare Quantencomputer brauchen.
+```
+
+**2. Random Circuit Sampling Benchmark**
+
+Willow hat eine RCS-Berechnung in unter 5 Minuten durchgeführt, die auf dem schnellsten Supercomputer der Welt (Frontier) **10²⁵ Jahre** dauern würde.
+
+Zum Vergleich: Das Universum ist ~1.4 × 10¹⁰ Jahre alt.
+
+### Willow Specs
+
+| Metrik | Wert |
+|--------|------|
+| Qubits | 105 |
+| T1 Kohärenzzeit | ~100 µs (5× besser als Sycamore) |
+| 2-Qubit Gate Error | 0.33% ± 0.18% |
+| Error Correction Cycles/sec | 909.000 |
+| Connectivity | 3.47 (4-way typical) |
+
+### Was das bedeutet (und was nicht)
+
+**Was es bedeutet:**
+- ✅ Skalierbare Fehlerkorrektur ist MÖGLICH
+- ✅ Die Roadmap zu fault-toleranten QCs ist realistisch
+- ✅ Google liegt bei Surface Codes vorne
+
+**Was es NICHT bedeutet:**
+- ❌ Wir haben jetzt "nützliche" Quantencomputer
+- ❌ RSA ist geknackt (Google sagt selbst: noch ~10 Jahre)
+- ❌ Praktische Algorithmen laufen schon
+
+> **Hartmut Neven (Google Quantum AI):** "Willow lends credence to the notion that quantum computation occurs in many parallel universes..."
+
+Das hat für einige Kontroverse gesorgt. Multiverse-Hype oder nicht — der technische Durchbruch ist real.
+
+---
+
+## IBM's Roadmap — Condor, Heron und darüber hinaus
+
+IBM verfolgt einen anderen Ansatz als Google: **Modularität und klassische Integration**.
+
+### Die aktuelle Fleet (Januar 2025)
+
+| Prozessor | Qubits | Status |
+|-----------|--------|--------|
+| Eagle | 127 | Produktion |
+| Heron r1 | 133 | Produktion (ibm_torino) |
+| Heron r2 | 156 | Produktion (ibm_fez) |
+| Condor | 1.121 | Demo/Forschung |
+
+### Die Roadmap bis 2033
+
+```
+2024  ────────────────────────────────────────────────────►
+      Heron (133-156 Qubits)
+      └── 5.000 Gates möglich
+      └── Tunable Couplers (kein Crosstalk!)
+
+2025  ────────────────────────────────────────────────────►
+      Flamingo (462 Qubits) + Kookaburra (1.386 Qubits)
+      └── Quantum Communication Links
+      └── 3× Kookaburra = 4.158 Qubits!
+
+2029  ────────────────────────────────────────────────────►
+      Starling
+      └── 100 MILLIONEN Gates
+      └── 200+ Qubits mit Fehlerkorrektur
+      └── Gross Code (neuer Error Correction Ansatz)
+
+2033  ────────────────────────────────────────────────────►
+      Blue Jay
+      └── 1 MILLIARDE Gates
+      └── 2.000+ Qubits
+      └── Echte Fault Tolerance
+```
+
+### IBM's Philosophie: Quantum-Centric Supercomputing
+
+IBM will Quantenprozessoren nicht als standalone-Geräte, sondern als **Beschleuniger in klassischen Supercomputern** einsetzen:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                  QUANTUM-CENTRIC SUPERCOMPUTER           │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│   ┌─────────┐    ┌─────────┐    ┌─────────┐             │
+│   │  CPU    │────│  GPU    │────│  QPU    │             │
+│   │ Cluster │    │ Cluster │    │ Cluster │             │
+│   └─────────┘    └─────────┘    └─────────┘             │
+│        │              │              │                   │
+│        └──────────────┴──────────────┘                   │
+│                       │                                  │
+│              [ Qiskit Runtime ]                          │
+│                       │                                  │
+│        Automatische Workload-Verteilung                  │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Der Wettlauf der Giganten
+
+Nicht nur Google und IBM sind im Rennen:
+
+| Company | Technologie | Qubits (2025) | Besonderheit |
+|---------|-------------|---------------|--------------|
+| **Google** | Superconducting | 105 (Willow) | Below-threshold QEC |
+| **IBM** | Superconducting | 1.121 (Condor) | Modular, Production-ready |
+| **IonQ** | Trapped Ions | 32 (Forte) | Höchste Gate Fidelity |
+| **Quantinuum** | Trapped Ions | 56 (H2) | Niedrigste Fehlerrate |
+| **Microsoft** | Topological (geplant) | 0 (noch) | Theoretisch fehlerresistent |
+| **Amazon** | Diverse (Braket) | - | Cloud-Plattform für alle |
+| **China** | Superconducting + Photonic | 66+ (Zuchongzhi) | Staatlich gefördert |
+
+### Ionenfallen vs. Supraleitende Qubits
+
+```
+Supraleitende Qubits (Google, IBM):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
++ Schnelle Gates (~10-100 ns)
++ Gut skalierbar (mehr Qubits)
++ Etablierte Fab-Prozesse
+- Kurze Kohärenzzeiten (~100 µs)
+- Braucht Millikelvin-Kühlung
+- Crosstalk-Probleme
+
+Ionenfallen (IonQ, Quantinuum):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
++ Lange Kohärenzzeiten (~Sekunden!)
++ Höchste Gate-Fidelity (>99.9%)
++ All-to-All Connectivity
+- Langsame Gates (~10-100 µs)
+- Schwerer zu skalieren
+- Komplexe Lasersteuerung
+```
+
+---
+
+## NISQ vs. Fault-Tolerant — Wo stehen wir wirklich?
+
+Lass mich ehrlich sein: Es gibt viel Hype. Hier ist die Realität:
+
+### Die NISQ-Ära (jetzt)
+
+**NISQ** = Noisy Intermediate-Scale Quantum
+
+```
+Charakteristik:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• 50-1000+ physische Qubits
+• Fehlerraten: ~0.1-1% pro Gate
+• Keine vollständige Fehlerkorrektur
+• Begrenzte Schaltkreistiefe (~100-1000 Gates)
+• Experimentell, nicht produktiv
+```
+
+**Was NISQ kann:**
+- Quantum Machine Learning Experimente
+- Variational Algorithms (VQE, QAOA)
+- Quantum Simulation (kleine Moleküle)
+- Benchmarking & Forschung
+
+**Was NISQ NICHT kann:**
+- Shor's Algorithmus auf RSA-Zahlen
+- Grover auf große Datenbanken
+- Praktisch relevante Optimierung
+- Alles was viele Gates braucht
+
+### Fault-Tolerant Quantum Computing (Ziel)
+
+```
+Anforderungen:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Millionen logische Gates
+• Fehlerrate < 10⁻¹² pro Gate
+• ~1000-10000 physische Qubits pro logischem Qubit
+• Real-time Fehlerkorrektur
+
+Timeline (optimistisch):
+• 2029: Erste Demos (IBM Starling)
+• 2033: Produktionssysteme (IBM Blue Jay)
+• 2035+: Praktischer Nutzen
+```
+
+### Die ehrliche Einschätzung
+
+| Anwendung | NISQ möglich? | Wann produktiv? |
+|-----------|---------------|-----------------|
+| RSA knacken | ❌ | 2035-2040+ |
+| Medikamentenentwicklung | 🟡 Begrenzt | 2030+ |
+| Finanzen/Optimierung | 🟡 Hybride Ansätze | 2028+ |
+| ML-Beschleunigung | 🟡 Experimentell | 2027+ |
+| Kryptographie | ✅ QKD funktioniert | Jetzt |
+
+---
+
+# Teil VI: Post-Quantum Kryptographie
+
+## Das Problem: Shor bedroht alles
+
+Okay, das ist wichtig. Shor's Algorithmus kann:
+- RSA brechen
+- Elliptic Curve Cryptography (ECC) brechen
+- Diffie-Hellman Key Exchange brechen
+
+Das ist quasi **alles** was wir heute für sichere Kommunikation nutzen.
+
+```
+Aktuelle Verschlüsselung:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Du  ──[RSA/ECC]──▶  Bank  ──[RSA/ECC]──▶  Server
+
+          │                    │
+          ▼                    ▼
+    Basiert auf:          Basiert auf:
+    - Faktorisierung      - Diskrete Logarithmen
+    - Elliptic Curves     - Elliptic Curves
+
+          │                    │
+          └────────┬───────────┘
+                   │
+                   ▼
+           SHOR KANN DAS KNACKEN
+```
+
+**"Harvest Now, Decrypt Later":** Geheimdienste könnten JETZT verschlüsselte Daten sammeln und SPÄTER (wenn QCs existieren) entschlüsseln. Das ist keine Paranoia, das ist dokumentiert.
+
+---
+
+## NIST's neue Standards (August 2024)
+
+Nach 8 Jahren Evaluation hat NIST am 13. August 2024 die ersten **Post-Quantum Cryptography Standards** veröffentlicht:
+
+| Standard | Algorithmus | Typ | Basiert auf |
+|----------|-------------|-----|-------------|
+| **FIPS 203** | ML-KEM (ex Kyber) | Key Encapsulation | Lattices |
+| **FIPS 204** | ML-DSA (ex Dilithium) | Digital Signature | Lattices |
+| **FIPS 205** | SLH-DSA (ex SPHINCS+) | Digital Signature | Hashes |
+| FIPS 206 (Draft) | FN-DSA (ex FALCON) | Digital Signature | Lattices |
+
+**Plus Backup (März 2025):**
+- **HQC** — Code-basierter KEM als Alternative zu ML-KEM
+
+---
+
+## Die neuen Algorithmen erklärt
+
+### ML-KEM (Module-Lattice-Based Key-Encapsulation Mechanism)
+
+Der neue Standard für **Schlüsselaustausch**.
+
+```
+Das Lattice-Problem (vereinfacht):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Stell dir ein Gitter in vielen Dimensionen vor:
+
+    •     •     •     •     •
+      •     •     •     •
+    •     •     •     •     •
+      •     •     •     •
+    •     •     •     •     •
+
+Problem: Finde den kürzesten Vektor
+         oder den nächsten Gitterpunkt zu einem Punkt.
+
+In 2D: Einfach
+In 1000D: Selbst für Quantencomputer SCHWER!
+```
+
+**Warum Lattices?**
+- Mathematisch gut verstanden
+- Effizient zu implementieren
+- Keine bekannten Quantum-Angriffe
+
+### ML-DSA (Module-Lattice-Based Digital Signature)
+
+Für **digitale Signaturen** — beweist, dass eine Nachricht wirklich von dir kommt.
+
+```
+Klassisch (RSA):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Signatur = Nachricht^d mod n
+           └── Basiert auf Faktorisierung
+
+Post-Quantum (ML-DSA):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Signatur = f(Nachricht, Lattice-Secret)
+           └── Basiert auf Lattice-Probleme
+```
+
+### SLH-DSA (Stateless Hash-Based Digital Signature)
+
+Ein **Backup** für ML-DSA, falls Lattice-Kryptographie doch gebrochen wird:
+
+- Basiert NUR auf Hash-Funktionen
+- Mathematisch sehr konservativ
+- Größere Signaturen, aber maximale Sicherheit
+
+---
+
+## Was bedeutet das für dich?
+
+### Als Entwickler
+
+```
+JETZT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Inventarisiere wo du Krypto nutzt
+2. Priorisiere nach Datensensitivität
+3. Plane Migration auf PQC
+
+TIMELINE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2024-2025: Standards finalisiert ✅
+2025-2027: Libraries werden reif
+2027-2030: Breite Adoption erwartet
+2030+:     Alte Algorithmen deprecated
+```
+
+### Konkrete Schritte
+
+1. **TLS 1.3 mit Hybrid-Mode:** Kombiniert klassisch + PQC
+2. **Libraries updaten:** OpenSSL 3.x unterstützt bereits PQC
+3. **Key Sizes anpassen:** ML-KEM Keys sind größer
+4. **Performance testen:** PQC ist schneller als klassische Krypto!
+
+### Fun Fact
+
+> ML-KEM ist tatsächlich **effizienter** als RSA oder ECC! Die Lattice-Operationen sind schneller als modulare Exponentation.
+
+---
+
+# Teil VII: Meine Projekte & Ressourcen
 
 ## 🔬 RCS Benchmark (dieses Repo!)
 
@@ -901,9 +1315,9 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 ---
 
-# Ressourcen, die mir geholfen haben
+## Ressourcen, die mir geholfen haben
 
-## Bücher
+### Bücher
 
 1. **"Quantum Computation and Quantum Information"** — Nielsen & Chuang
    - DAS Standardwerk. Dick. Mathematisch. Aber gut.
@@ -922,29 +1336,31 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
    - **Bewertung:** *"A fantastic overview of an emerging research landscape"* — Maria Schuld (Xanadu)
    - [Cambridge Link](https://www.cambridge.org/core/books/machine-learning-in-quantum-sciences/B8CD17DBEC814E98C522532BECF60BE7)
 
-## Online-Kurse
+### Online-Kurse
 
 - [IBM Qiskit Textbook](https://qiskit.org/textbook/) — Kostenlos, interaktiv, sehr gut!
 - [Brilliant.org Quantum Computing](https://brilliant.org/) — Für Visualisierungen
 - [edX: Quantum Computing Fundamentals](https://www.edx.org/) — MIT-Kurs, anspruchsvoll
 
-## YouTube-Kanäle
+### YouTube-Kanäle
 
 - **3Blue1Brown** — Für lineare Algebra Intuition
 - **Looking Glass Universe** — Quantenmechanik erklärt
 - **Qiskit** — Offizielle Tutorials
 
-## Papers
+### Papers (aktualisiert 2025)
 
+- [Google Willow Nature Paper (2024)](https://www.nature.com/articles/s41586-024-08448-z) — Below-threshold QEC
 - [Google Quantum Supremacy Paper (Nature 2019)](https://www.nature.com/articles/s41586-019-1666-5)
 - [Shor's Original Paper](https://arxiv.org/abs/quant-ph/9508027)
 - [Grover's Original Paper](https://arxiv.org/abs/quant-ph/9605043)
 - [AlphaQubit: ML für Quantum Error Correction (Nature 2024)](https://www.nature.com/articles/s41586-024-08148-8)
 - [Modern applications of ML in quantum sciences (arXiv:2204.04198)](https://arxiv.org/abs/2204.04198) — Preprint zum Buch
+- [NIST Post-Quantum Cryptography Standards (2024)](https://csrc.nist.gov/projects/post-quantum-cryptography)
 
 ---
 
-# Offene Fragen (die mich nachts wachhalten)
+## Offene Fragen (die mich nachts wachhalten)
 
 1. **Was IST Messung eigentlich?** Warum kollabiert die Wellenfunktion? Ist es wirklich zufällig?
 
@@ -952,11 +1368,32 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 
 3. **Wo ist die Grenze?** Ab wann ist ein System "klassisch"? Warum sehen wir keine Superpositionen im Alltag?
 
-4. **Quantum Computing Hype:** Werden wir jemals nützliche Quantencomputer haben? Oder bleibt's bei 100-Qubit-Spielzeug?
+4. **Quantum Computing Hype:** Werden wir jemals *praktisch nützliche* Quantencomputer haben? Willow ist ein Meilenstein, aber wann kommt der Durchbruch für echte Anwendungen?
 
 5. **ML + Quantum:** Werden neuronale Netze die klassische Simulation von Quantensystemen obsolet machen? Oder ist das nur ein Hype?
 
-6. **Was macht Bewusstsein?** (Okay, das ist Philosophie, aber die Quantenleute haben mich angesteckt...)
+6. **Post-Quantum Migration:** Werden wir rechtzeitig fertig bevor "Harvest Now, Decrypt Later" zum Problem wird?
+
+7. **Was macht Bewusstsein?** (Okay, das ist Philosophie, aber die Quantenleute haben mich angesteckt...)
+
+---
+
+## Timeline: Wichtige Meilensteine
+
+```
+1994  ─── Shor's Algorithmus veröffentlicht
+1995  ─── Erste Fehlerkorrektur-Codes (Shor, Steane)
+1996  ─── Grover's Suchalgorithmus
+2001  ─── Erste Demonstration: Shor auf 15 (7 Qubits, IBM)
+2016  ─── IBM Quantum Experience (5 Qubits öffentlich)
+2019  ─── Google "Quantum Supremacy" (Sycamore, 53 Qubits)
+2023  ─── IBM Condor (1.121 Qubits)
+2024  ─── Google Willow: Below-threshold QEC! ← WE ARE HERE
+2024  ─── NIST Post-Quantum Standards finalisiert
+2029  ─── IBM Starling: 100M Gates (geplant)
+2033  ─── IBM Blue Jay: 1B Gates (geplant)
+????  ─── Praktischer Quantenvorteil für reale Probleme
+```
 
 ---
 
@@ -966,3 +1403,5 @@ Ich baue einen **Random Circuit Sampling** Simulator in Rust. Das ist genau die 
 ---
 
 **Lizenz:** MIT (für den Code) / CC BY-SA (für den Text)
+
+**Letztes Update:** Januar 2025
